@@ -1,0 +1,218 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Operand Test",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/consultar-cep/{cep}": {
+            "get": {
+                "tags": [
+                    "GET Routes"
+                ],
+                "description": "Retorna informações de um cep na base de dados através de um cep",
+                "operationId": "76d452a5353c2290f55d7c6ff0d3a1f3",
+                "parameters": [
+                    {
+                        "name": "cep",
+                        "in": "path",
+                        "description": "Numero do CEP",
+                        "required": true,
+                        "schema": {
+                            "type": "numeric"
+                        },
+                        "example": "10100100"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna endereço cadastrado na base"
+                    },
+                    "201": {
+                        "description": "Retorna endereço que previamente não existia, porém adicionado ao consultar"
+                    }
+                }
+            }
+        },
+        "/api/consultar-endereco/{endereco}": {
+            "get": {
+                "tags": [
+                    "GET Routes"
+                ],
+                "description": "Retorna informações de um cep na base de dados através de um logradouro",
+                "operationId": "f4cdddbdbf53ae1b047df0b4a876541e",
+                "parameters": [
+                    {
+                        "name": "endereco",
+                        "in": "path",
+                        "description": "Nome do logradouro",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Rua josé matias"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna uma lista de endereços cadastrados na base"
+                    }
+                }
+            }
+        },
+        "/api/consultar-uf/{uf}": {
+            "get": {
+                "tags": [
+                    "GET Routes"
+                ],
+                "description": "Retorna informações de um cep na base de dados através de uma sigla",
+                "operationId": "92028cb5adce7d1fd22f54f2181ca8c3",
+                "parameters": [
+                    {
+                        "name": "uf",
+                        "in": "path",
+                        "description": "Sigla da Unidade Federal",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "SP"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna uma lista de endereços cadastrados na base"
+                    }
+                }
+            }
+        },
+        "/api/cadastrar-cep": {
+            "post": {
+                "tags": [
+                    "POST Routes"
+                ],
+                "summary": "Cadastra um novo cep",
+                "operationId": "9371cbde4322fed945a19bea6dd27b6f",
+                "parameters": [
+                    {
+                        "name": "cep",
+                        "in": "query",
+                        "description": "Número identificador de endereço com 8 digitos",
+                        "required": true,
+                        "schema": {
+                            "type": "numeric"
+                        }
+                    },
+                    {
+                        "name": "logradouro",
+                        "in": "query",
+                        "description": "Nome da rua",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "bairro",
+                        "in": "query",
+                        "description": "Nome do bairro",
+                        "required": true,
+                        "schema": {
+                            "type": "numeric"
+                        }
+                    },
+                    {
+                        "name": "municipio",
+                        "in": "query",
+                        "description": "Nome do bairro",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "uf",
+                        "in": "query",
+                        "description": "Unidade Federal",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Retorna endereço que foi cadastrado com sucesso"
+                    },
+                    "422": {
+                        "description": "Erros de Validação"
+                    }
+                }
+            }
+        },
+        "/api/editar-cep": {
+            "put": {
+                "tags": [
+                    "PUT Routes"
+                ],
+                "summary": "Edita um cep já existente na base",
+                "operationId": "8c5523891283a60a3a25f2ddd010be76",
+                "parameters": [
+                    {
+                        "name": "cep",
+                        "in": "query",
+                        "description": "Número identificador de endereço com 8 digitos",
+                        "required": true,
+                        "schema": {
+                            "type": "numeric"
+                        }
+                    },
+                    {
+                        "name": "logradouro",
+                        "in": "query",
+                        "description": "Nome da rua",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "bairro",
+                        "in": "query",
+                        "description": "Nome do bairro",
+                        "required": true,
+                        "schema": {
+                            "type": "numeric"
+                        }
+                    },
+                    {
+                        "name": "municipio",
+                        "in": "query",
+                        "description": "Nome do bairro",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "uf",
+                        "in": "query",
+                        "description": "Unidade Federal",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna endereço que foi editado com sucesso"
+                    },
+                    "422": {
+                        "description": "Erros de Validação"
+                    }
+                }
+            }
+        }
+    }
+}
